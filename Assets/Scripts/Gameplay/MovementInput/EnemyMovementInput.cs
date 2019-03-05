@@ -49,6 +49,11 @@ public class EnemyMovementInput : MonoBehaviour, IMovementInput
     // Update is called once per frame
     void Update()
     {
+        if (StateManager.Instance.CurrentState != StateManager.GameState.Playing)
+        {
+            return;
+        }
+
         if (ArrivedAtTargetPosition())
         {
             // select next waypoint

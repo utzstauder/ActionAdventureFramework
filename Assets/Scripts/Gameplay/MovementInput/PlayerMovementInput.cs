@@ -10,6 +10,11 @@ public class PlayerMovementInput : MonoBehaviour, IMovementInput
     // Update is called once per frame
     void Update()
     {
+        if (StateManager.Instance.CurrentState != StateManager.GameState.Playing)
+        {
+            return;
+        }
+
         // read input
         inputVector.x = Input.GetAxis("Horizontal");
         inputVector.y = Input.GetAxis("Vertical");

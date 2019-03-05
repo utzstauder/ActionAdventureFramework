@@ -44,6 +44,15 @@ public class StateManager : MonoBehaviour {
 
     #region Unity Messages
 
+    private void OnEnable()
+    {
+        TitleScreenBehaviour titleScreen = FindObjectOfType<TitleScreenBehaviour>();
+        if (titleScreen)
+        {
+            titleScreen.OnStartGamePressed += HandleOnStartGamePressed;
+        }
+    }
+
     private void Awake()
     {
         if (Instance == null)
@@ -58,9 +67,15 @@ public class StateManager : MonoBehaviour {
 
     private void Start()
     {
-        CurrentState = GameState.Playing;
-        CurrentState = GameState.Paused;
+        CurrentState = GameState.TitleScreen;
     }
 
     #endregion
+
+
+    void HandleOnStartGamePressed()
+    {
+        Debug.Log("Start Game was pressed");
+        CurrentState = GameState.Playing;
+    }
 }
