@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 114013493117754176}
   - component: {fileID: 54572196167905418}
   - component: {fileID: 114756350838590774}
+  - component: {fileID: 65645456888272440}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -218,6 +219,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65645456888272440
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1563591833202808}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2, y: 2, z: 1.2}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!65 &65698291262611004
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -241,10 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e194d8ea337da4997f9fe792661b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  waypoints: []
   distanceToTarget: 0.05
 --- !u!114 &114656600767750994
 MonoBehaviour:

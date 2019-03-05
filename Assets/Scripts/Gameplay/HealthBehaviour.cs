@@ -37,10 +37,12 @@ public class HealthBehaviour : MonoBehaviour, IDamagable
     void Die()
     {
         Debug.Log("Defeated");
+        Destroy(gameObject);
     }
 
     public void DoDamage(DamageInfo info)
     {
+        Debug.LogFormat("Received {0} {1} damage", info.amount, info.type.ToString());
         CurrentHp -= info.amount;
     }
 }
