@@ -21,14 +21,14 @@ public class MovementBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (inputRef == null) return;
 
         rb.MovePosition(rb.position +
             (Vector3.right * inputRef.InputVector.x +
             Vector3.forward * inputRef.InputVector.y)
-            * movementSpeed * Time.deltaTime);
+            * movementSpeed * Time.fixedDeltaTime);
 
         // rotate towards movement direction
         inputOrientation = Quaternion.FromToRotation(
@@ -41,8 +41,14 @@ public class MovementBehaviour : MonoBehaviour
             Quaternion.Lerp(
                 rb.rotation,
                 rb.rotation * inputOrientation,
-                Time.deltaTime * rotationSpeed
+                Time.fixedDeltaTime * rotationSpeed
             )
         );
+
+        //rb.rotation = Quaternion.Lerp(
+        //        rb.rotation,
+        //        rb.rotation * inputOrientation,
+        //        Time.fixedDeltaTime * rotationSpeed
+        //    );
     }
 }
