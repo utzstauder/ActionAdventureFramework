@@ -26,4 +26,5 @@ public struct DamageInfo
 public interface IDamagable
 {
     void DoDamage(DamageInfo info);
+    // System.Action OnDamageReceived { get; }
 }

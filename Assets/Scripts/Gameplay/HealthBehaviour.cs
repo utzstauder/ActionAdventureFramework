@@ -22,6 +22,12 @@ public class HealthBehaviour : MonoBehaviour, IDamagable
         }
     }
 
+    public delegate void DeathAction();
+    public DeathAction OnDeath;
+
+
+    #region Unity Messages
+
     // Use this for initialization
     void Start()
     {
@@ -34,15 +40,30 @@ public class HealthBehaviour : MonoBehaviour, IDamagable
 
     }
 
+    #endregion
+
+    #region Private Functions
+
     void Die()
     {
         Debug.Log("Defeated");
-        Destroy(gameObject);
+        //Destroy(gameObject);
+
+        if (OnDeath != null)
+        {
+            OnDeath.Invoke();
+        }
     }
+
+    #endregion
+
+    #region Interface Functions
 
     public void DoDamage(DamageInfo info)
     {
         Debug.LogFormat("Received {0} {1} damage", info.amount, info.type.ToString());
         CurrentHp -= info.amount;
     }
+
+    #endregion
 }

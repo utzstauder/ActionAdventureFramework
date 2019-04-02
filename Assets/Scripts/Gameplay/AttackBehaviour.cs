@@ -28,7 +28,7 @@ public class AttackBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 
+        // TODO: extract this!
         if (Input.GetButtonDown("Jump"))
         {
             Attack();

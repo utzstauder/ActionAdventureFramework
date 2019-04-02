@@ -7,7 +7,8 @@ public class StateManager : MonoBehaviour {
 
     public static StateManager Instance { get; private set; }
 
-    public static System.Action<GameState> OnGameStateChanged;
+    public delegate void GameStateChangeAction(GameState state);
+    public static GameStateChangeAction OnGameStateChanged;
 
 
     // int currentState = 0; BAD
@@ -35,12 +36,12 @@ public class StateManager : MonoBehaviour {
                 currentState = value;
                 if (OnGameStateChanged != null)
                 {
-                    OnGameStateChanged(currentState);
+                    // OnGameStateChanged(currentState);
+                    OnGameStateChanged.Invoke(currentState);
                 }
             }
         }
     }
-
 
     #region Unity Messages
 
