@@ -19,6 +19,8 @@ public class AttackBehaviour : MonoBehaviour
         }
     }
 
+    public System.Action<DamageInfo> OnAttack;
+
     // Use this for initialization
     void Start()
     {
@@ -37,6 +39,11 @@ public class AttackBehaviour : MonoBehaviour
 
     void Attack()
     {
+        if (OnAttack != null)
+        {
+            OnAttack(damageInfo);
+        }
+
         Collider[] colliders = Physics.OverlapSphere(AttackPosition, attackSize);
         for (int i = 0; i < colliders.Length; i++)
         {
