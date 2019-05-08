@@ -9,11 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8f6f1d7aa6df6d4d9924341e38ea4e4, type: 3}
-  m_Name: Enemy Patrol
+  m_Name: Enemy Follow Player
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: 49c6c6c4798027347954fc521caac891, type: 2}
-  transitions:
-  - condition: {fileID: 11400000, guid: 312bdfae824aa4a408ef9b8db1a75c5d, type: 2}
-    trueState: {fileID: 11400000, guid: b9ec6dda6e55c2a4b836b8176660b240, type: 2}
-    falseState: {fileID: 11400000}
+  - {fileID: 11400000, guid: 6af2cf8cdb3717548b68a663d13b3493, type: 2}
+  transitions: []

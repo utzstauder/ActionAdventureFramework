@@ -40,6 +40,7 @@ public class StateController : MonoBehaviour, IMovementInput
     }
 
     public float distanceToTarget = 0.05f;
+    public float lookDistance = 10f;
 
     public Vector3 TargetPosition
     {
