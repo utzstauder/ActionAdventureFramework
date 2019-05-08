@@ -59,5 +59,11 @@ public class StateController : MonoBehaviour, IMovementInput
         currentState.UpdateState(this);
     }
 
-    // TODO: transition to next state
+    // transition to next state
+    public void TransitionToState(State targetState)
+    {
+        if (targetState == currentState) return;
+
+        currentState = targetState;
+    }
 }

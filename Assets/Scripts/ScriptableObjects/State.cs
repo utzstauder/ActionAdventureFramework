@@ -5,6 +5,7 @@ using System.Collections;
 public class State : ScriptableObject
 {
     [SerializeField] Action[] actions;
+    [SerializeField] Transition[] transitions;
 
     public void UpdateState(StateController controller)
     {
@@ -13,7 +14,19 @@ public class State : ScriptableObject
         {
             actions[i].DoAction(controller);
         }
-    }
 
-    // TODO: transitions to other states
+        // check transition conditions
+        for (int i = 0; i < transitions.Length; i++)
+        {
+            if (transitions[i].condition.IsMet(controller))
+            {
+                // go to trueState
+                controller.TransitionToState(transitions[i].trueState);
+            } else
+            {
+                // go to falseState
+                controller.TransitionToState(transitions[i].falseState);
+            }
+        }
+    }
 }
