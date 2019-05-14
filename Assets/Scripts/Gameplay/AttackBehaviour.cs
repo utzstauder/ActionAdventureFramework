@@ -21,7 +21,13 @@ public class AttackBehaviour : MonoBehaviour
 
     public System.Action<DamageInfo> OnAttack;
 
-    // Use this for initialization
+    private IAttackInput attackInput;
+
+    private void Awake()
+    {
+        attackInput = GetComponent<IAttackInput>();
+    }
+
     void Start()
     {
 
@@ -30,8 +36,9 @@ public class AttackBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TODO: extract this!
-        if (Input.GetButtonDown("Jump"))
+        if (attackInput == null) return;
+
+        if (attackInput.AttackInput)
         {
             Attack();
         }
@@ -47,12 +54,12 @@ public class AttackBehaviour : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(AttackPosition, attackSize);
         for (int i = 0; i < colliders.Length; i++)
         {
-            IDamagable damagable = colliders[i].gameObject.GetComponent<IDamagable>();
-            if (damagable != null)
+            IDamagable[] damagables = colliders[i].gameObject.GetComponentsInParent<IDamagable>();
+            for (int j = 0; j < damagables.Length; j++)
             {
-                damagable.DoDamage(damageInfo);
+                damagables[j].DoDamage(damageInfo);
             }
-        }
+       }
     }
 
     private void OnDrawGizmos()

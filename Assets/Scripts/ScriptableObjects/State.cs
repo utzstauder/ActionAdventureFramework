@@ -27,6 +27,13 @@ public class State : ScriptableObject
                 // go to falseState
                 controller.TransitionToState(transitions[i].falseState);
             }
+
+            if (controller.CurrentState != this)
+            {
+                // break out of transition loop
+                // Debug.Log("Breaking out of transition loop");
+                break;
+            }
         }
     }
 }

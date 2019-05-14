@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Enemy Attack Player
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: 6af2cf8cdb3717548b68a663d13b3493, type: 2}
+  - {fileID: 11400000, guid: ec79a99c0a267b8449874f93b9889490, type: 2}
   transitions:
   - condition: {fileID: 11400000, guid: 25258cb7f100c6e4b85316e79c9b6c56, type: 2}
     trueState: {fileID: 11400000}

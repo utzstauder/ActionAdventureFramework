@@ -47,12 +47,13 @@ public class HealthBehaviour : MonoBehaviour, IDamagable
     void Die()
     {
         Debug.Log("Defeated");
-        //Destroy(gameObject);
 
         if (OnDeath != null)
         {
             OnDeath.Invoke();
         }
+
+        // Destroy(gameObject);
     }
 
     #endregion

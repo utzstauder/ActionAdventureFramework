@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StateController : MonoBehaviour, IMovementInput
+public class StateController : MonoBehaviour, IMovementInput, IAttackInput
 {
     [SerializeField] private State currentState;
+    public State CurrentState { get { return currentState; } }
 
     public Vector2 InputVector
     {
@@ -12,7 +13,16 @@ public class StateController : MonoBehaviour, IMovementInput
             return inputVector;
         }
     }
+    public bool AttackInput
+    {
+        get
+        {
+            return attackInput;
+        }
+    }
 
+
+    [HideInInspector] public bool attackInput;
     [HideInInspector] public Vector2 inputVector = new Vector2();
     [HideInInspector] public Vector3 direction;
 
@@ -61,12 +71,17 @@ public class StateController : MonoBehaviour, IMovementInput
         }
     }
 
+
     public float attackRange = 0.5f;
 
 
     void Update()
     {
         if (currentState == null) return;
+
+        // reset inputs
+        attackInput = false;
+        inputVector = Vector2.zero;
 
         currentState.UpdateState(this);
     }
