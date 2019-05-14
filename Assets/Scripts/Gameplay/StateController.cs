@@ -38,11 +38,8 @@ public class StateController : MonoBehaviour, IMovementInput
             }
         }
     }
-
     public float distanceToTarget = 0.05f;
-    public float lookDistance = 10f;
-
-    public Vector3 TargetPosition
+    public Vector3 TargetWaypointPosition
     {
         get
         {
@@ -51,6 +48,20 @@ public class StateController : MonoBehaviour, IMovementInput
             return waypoints[CurrentWaypointIndex].position;
         }
     }
+
+    public float lookDistance = 10f;
+    public float sphereCastRadius = 1f;
+    [HideInInspector] public GameObject followObject;
+    public Vector3 FollowObjectPosition
+    {
+        get
+        {
+            if (followObject == null) return transform.position;
+            return followObject.transform.position;
+        }
+    }
+
+    public float attackRange = 0.5f;
 
 
     void Update()

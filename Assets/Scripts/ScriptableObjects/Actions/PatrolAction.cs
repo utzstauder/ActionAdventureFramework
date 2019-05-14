@@ -13,7 +13,7 @@ public class PatrolAction : Action
             // CurrentWaypointIndex = Random.Range(0, waypoints.Length);
         }
 
-        controller.direction = controller.TargetPosition - controller.transform.position;
+        controller.direction = controller.TargetWaypointPosition - controller.transform.position;
 
         controller.inputVector.x = controller.direction.x;
         controller.inputVector.y = controller.direction.z;
@@ -23,6 +23,6 @@ public class PatrolAction : Action
 
     bool ArrivedAtTargetPosition(StateController controller)
     {
-        return (Vector3.Distance(controller.transform.position, controller.TargetPosition) <= controller.distanceToTarget);
+        return (Vector3.Distance(controller.transform.position, controller.TargetWaypointPosition) <= controller.distanceToTarget);
     }
 }

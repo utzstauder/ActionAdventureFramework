@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[CreateAssetMenu(menuName = "AI/Conditions/Look at Player Condition")]
-public class LookAtPlayerCondition : Condition
+[CreateAssetMenu(menuName = "AI/Conditions/In Attack Range Condition")]
+public class InAttackRangeCondition : Condition
 {
     public override bool IsMet(StateController controller)
     {
@@ -12,16 +12,14 @@ public class LookAtPlayerCondition : Condition
             controller.sphereCastRadius,
             controller.transform.forward,
             out hitInfo,
-            controller.lookDistance))
+            controller.attackRange))
         {
-            if (hitInfo.transform.gameObject.CompareTag("Player"))
+            if (hitInfo.transform.gameObject == controller.followObject)
             {
-                controller.followObject = hitInfo.transform.gameObject;
                 return true;
             }
         }
 
-        controller.followObject = null;
         return false;
     }
 }
