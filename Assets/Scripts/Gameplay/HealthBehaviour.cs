@@ -5,15 +5,23 @@ public class HealthBehaviour : MonoBehaviour, IDamagable
 {
     [SerializeField] int initialHp;
 
+    public int MaxHp { get { return initialHp; } }
+
     int currentHp;
-    int CurrentHp
+    public int CurrentHp
     {
         get { return currentHp; }
-        set
+        private set
         {
             if (value != currentHp)
             {
                 currentHp = value;
+
+                if (OnHpChanged != null)
+                {
+                    OnHpChanged(currentHp, MaxHp);
+                }
+
                 if (currentHp <= 0)
                 {
                     Die();
@@ -25,6 +33,8 @@ public class HealthBehaviour : MonoBehaviour, IDamagable
     public delegate void DeathAction();
     public DeathAction OnDeath;
 
+    public event System.Action<int, int> OnHpChanged;
+
 
     #region Unity Messages
 
@@ -34,19 +44,14 @@ public class HealthBehaviour : MonoBehaviour, IDamagable
         CurrentHp = initialHp;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     #endregion
+
 
     #region Private Functions
 
     void Die()
     {
-        Debug.Log("Defeated");
+        // Debug.Log("Defeated");
 
         if (OnDeath != null)
         {
@@ -62,8 +67,11 @@ public class HealthBehaviour : MonoBehaviour, IDamagable
 
     public void DoDamage(DamageInfo info)
     {
-        Debug.LogFormat("Received {0} {1} damage", info.amount, info.type.ToString());
-        CurrentHp -= info.amount;
+        // Debug.LogFormat("Received {0} {1} damage", info.amount, info.type.ToString());
+        if (CurrentHp > 0)
+        {
+            CurrentHp -= info.amount;
+        }
     }
 
     #endregion

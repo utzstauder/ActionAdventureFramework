@@ -54,6 +54,8 @@ public class AttackBehaviour : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(AttackPosition, attackSize);
         for (int i = 0; i < colliders.Length; i++)
         {
+            if (colliders[i].gameObject == gameObject) continue;
+
             IDamagable[] damagables = colliders[i].gameObject.GetComponentsInParent<IDamagable>();
             for (int j = 0; j < damagables.Length; j++)
             {

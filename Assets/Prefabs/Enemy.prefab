@@ -39,7 +39,6 @@ GameObject:
   - component: {fileID: 4336738742762632}
   - component: {fileID: 33588197322321296}
   - component: {fileID: 23508635010931522}
-  - component: {fileID: 65457903724884316}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -61,6 +60,7 @@ GameObject:
   - component: {fileID: 65645456888272440}
   - component: {fileID: 114188516731766268}
   - component: {fileID: 114967543704258892}
+  - component: {fileID: 65346449133687308}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -75,7 +75,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1563591833202808}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9, y: 0, z: 0}
+  m_LocalPosition: {x: -6.96, y: 0, z: 1.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4336738742762632}
@@ -208,18 +208,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!65 &65457903724884316
+--- !u!65 &65346449133687308
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1052981851992750}
+  m_GameObject: {fileID: 1563591833202808}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!65 &65645456888272440
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -267,7 +267,7 @@ MonoBehaviour:
   lookDistance: 10
   sphereCastRadius: 1
   followObject: {fileID: 0}
-  attackRange: 0.5
+  attackRange: 0.3
 --- !u!114 &114656600767750994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -304,8 +304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646a703f3450a7f4f9fcf5f67670798c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackOffset: {x: 0, y: 0.77, z: 1.25}
-  attackSize: 0.6
+  attackOffset: {x: 0, y: 0.77, z: 1.6}
+  attackSize: 1
   damageInfo:
     amount: 1
     type: 0
