@@ -38,6 +38,5 @@ public class HealthTextUI : MonoBehaviour
     {
         // Debug.Log("OnHpChanged event received.");
         textComponent.text = arg1 + separatorString + arg2;
-
     }
 }

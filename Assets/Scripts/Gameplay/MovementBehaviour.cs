@@ -71,14 +71,13 @@ public class MovementBehaviour : MonoBehaviour
                 Time.fixedDeltaTime * rotationSpeed
             )
         );
-
-        //rb.rotation = Quaternion.Lerp(
-        //        rb.rotation,
-        //        rb.rotation * inputOrientation,
-        //        Time.fixedDeltaTime * rotationSpeed
-        //    );
     }
 
+    void LateUpdate()
+    {
+        // manually freeze x- and z-rotation
+        transform.localEulerAngles = Vector3.up * transform.localEulerAngles.y;
+    }
 
     void HandleOnDeath()
     {
