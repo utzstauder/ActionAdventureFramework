@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System;
+using System.Xml;
+using System.Xml.Serialization;
 
 public class SerializeScore : MonoBehaviour
 {
@@ -9,12 +11,18 @@ public class SerializeScore : MonoBehaviour
 
     int score = 0;
 
-    //// Use this for initialization
-    //void Start()
-    //{
-    //    Debug.LogFormat("dataPath: {0}", Application.dataPath);
-    //    Debug.LogFormat("persistentDataPath: {0}", Application.persistentDataPath);
-    //}
+    // Use this for initialization
+    void Start()
+    {
+        //Debug.LogFormat("dataPath: {0}", Application.dataPath);
+        //Debug.LogFormat("persistentDataPath: {0}", Application.persistentDataPath);
+        LoadScore();
+    }
+
+    void OnApplicationQuit()
+    {
+        SaveScore();
+    }
 
     // Update is called once per frame
     void Update()
@@ -85,20 +93,37 @@ public class SerializeScore : MonoBehaviour
         File.WriteAllText(filepath, jsonString);
 
         Debug.Log("Save successful!");
+
+        //var serializer = new XmlSerializer(typeof(SaveData));
+        //using (var stream = new FileStream(filepath, FileMode.Create))
+        //{
+        //    serializer.Serialize(stream, data);
+        //}
     }
 }
 
 [System.Serializable]
+[XmlRoot]
 public class SaveData
 {
+    [XmlArray, XmlArrayItem("DataEntry")]
     public List<DataEntry> scoreEntries;
 }
 
 [System.Serializable]
+[XmlRoot]
 public class DataEntry
 {
+    [XmlElement]
     public string name;
+    [XmlElement]
     public int score;
+
+    public DataEntry()
+    {
+        name = "";
+        score = 0;
+    }
 
     public DataEntry(string name, int score)
     {
